@@ -1,0 +1,17 @@
+# This ansible script will create deployments & services on K8s Cluster.
+
+- hosts: all
+  become: true
+
+  tasks:
+          - name: Delete old Deployment
+            command: kubectl delete -f /opt/aman-deployment.yaml
+
+          - name: Delete old Service
+            command: kubectl delete -f /opt/aman-service.yaml
+
+          - name: Create new Deployment
+            command: kubectl apply -f /opt/aman-deployment.yaml
+
+          - name: Create new Service
+            command: kubectl apply -f /opt/aman-service.yaml
